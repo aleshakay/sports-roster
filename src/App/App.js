@@ -1,11 +1,12 @@
 import React from 'react';
 import firebase from 'firebase/app';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.scss';
 
 import firebaseConnection from '../helpers/data/connection';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Auth from '../components/Auth/Auth';
-import './App.scss';
 import NavBar from '../components/NavBar/NavBar';
+import PlayerContainer from '../components/PlayerContainer/PlayerContainer';
 
 firebaseConnection();
 
@@ -24,19 +25,23 @@ class App extends React.Component {
     });
   }
 
-  renderView = () => {
-    const { authed } = this.state;
-    if (!authed) {
-      return (<Auth />);
-    }
-  }
-
   componentWillUnmount() {
     this.removeListner();
   }
 
+  renderView = () => {
+    const { authed } = this.state;
+    if (!authed) {
+      return (<Auth />);
+    } if (authed) {
+      return (<PlayerContainer />);
+    }
+    return (<PlayerContainer />);
+  }
+
   render() {
     const { authed } = this.state;
+
     return (
       <div className="App">
         <NavBar authed={authed} />
@@ -45,4 +50,5 @@ class App extends React.Component {
     );
   }
 }
+
 export default App;
