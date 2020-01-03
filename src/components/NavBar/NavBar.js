@@ -20,9 +20,9 @@ class NavBar extends React.Component {
 
     return (
       <div className="NavBar">
-        <div class="container display-flex">
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <span class="navbar-brand" href="#">Tennis Roster</span>
+        <div className="container display-flex">
+          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <span className="navbar-brand" href="#">Tennis Roster</span>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
