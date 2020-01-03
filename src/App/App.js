@@ -29,23 +29,15 @@ class App extends React.Component {
     this.removeListner();
   }
 
-  renderView = () => {
-    const { authed } = this.state;
-    if (!authed) {
-      return (<Auth />);
-    } if (authed) {
-      return (<PlayerContainer />);
-    }
-    return (<PlayerContainer />);
-  }
-
   render() {
     const { authed } = this.state;
 
     return (
       <div className="App">
         <NavBar authed={authed} />
-        {this.renderView()}
+        {
+        (authed) ? (<PlayerContainer />) : (<Auth/>)
+        }
       </div>
     );
   }
