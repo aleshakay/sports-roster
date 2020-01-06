@@ -4,7 +4,9 @@
 This application is a roster of a Tennis team. It list player and the match in which they play.
 
 ## ScreenShots
+![Main View](https://github.com/aleshakay/sports-roster/blob/master/src/assets/Screen%20Shot%202020-01-05%20at%2023.02.44.png)
 
+![Main View](https://github.com/aleshakay/sports-roster/blob/master/src/assets/Screen%20Shot%202020-01-05%20at%2023.04.12.png)
 
 ## Technologies Used
 React, HTML, Git
