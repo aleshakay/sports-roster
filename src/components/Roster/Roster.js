@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import playerShape from '../../helpers/propz/playerShape';
 
 import './Roster.scss';
 import authData from '../../helpers/data/authData';
 
 class Roster extends React.Component {
   static propTypes = {
-    savePlayer: PropTypes.string,
-    playerToEdit: PropTypes.func,
+    savePlayer: PropTypes.func,
+    playerToEdit: playerShape.playerShape,
     editMode: PropTypes.bool,
     updatePlayer: PropTypes.func,
   }
@@ -21,12 +22,19 @@ class Roster extends React.Component {
   componentDidMount() {
     const { playerToEdit, editMode } = this.props;
     if (editMode) {
-      this.setState({ imageUrl: playerToEdit.imageUrl, name: playerToEdit.name, position: playerToEdit.position });
+      this.setState({ imageUrl: playerToEdit.imageUrl, name: playerToEdit.imageUrl, position: playerToEdit.position });
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if ((prevProps.playerToEdit.id !== this.props.playerToEdit.id) && this.props.editMode) {
+      this.setState({ imageUrl: this.props.playerToEdit.imageUrl, name: this.props.playerToEdit.name, position: this.props.playerToEdit.position });
     }
   }
 
   savePlayerEvent = (e) => {
     const { addPlayer } = this.props;
+
     e.preventDefault();
     const newPlayer = {
       imageUrl: this.state.imageUrl,
@@ -75,8 +83,8 @@ class Roster extends React.Component {
         <input
           type="text"
           className="form-control"
-          id="player-name"
-          placeholder="Enter Player name:"
+          id="player-image"
+          placeholder="Enter Player image:"
           value={this.state.imageUrl}
           onChange={this.imageUrlChange}
         />
@@ -104,9 +112,10 @@ class Roster extends React.Component {
       />
     </div>
     {
-      !(editMode) ? (<button className="btn btn-secondary" onClick={this.savePlayerEvent}>Save Player</button>) : (<button className="btn btn-warning" onClick={this.updatePlayerEvent}>Update Player</button>)
+      (editMode) ? (<button className="btn btn-outline-light" onClick={this.updatePlayerEvent}>Save Player</button>) : (<button className="btn btn-warning" onClick={this.savePlayerEvent}>Update Player</button>)
     }
-  </form>);
+  </form>
+    );
   }
 }
 
