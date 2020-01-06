@@ -1,17 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './PlayerContainer.scss';
 
-import Player from '../Player/Player';
+import Players from '../Players/Players';
 import playerData from '../../helpers/data/playerData';
 import authData from '../../helpers/data/authData';
 import Roster from '../Roster/Roster';
 
 class PlayerContainer extends React.Component {
-  static propTypes = {
-    setSinglePlayer: PropTypes.func,
-  }
-
   state = {
     players: [],
     editMode: false,
@@ -45,15 +40,15 @@ class PlayerContainer extends React.Component {
   }
 
   setPlayerToEdit = (player) => {
-    this.setState({ PlayerToEdit: player });
+    this.setState({ playerToEdit: player });
   }
 
   setShowPlayerForm = () => {
     this.setState({ showPlayerForm: true });
   }
 
-  updatePlayer = (playerId, updatedPlayer) => {
-    playerData.updatePlayer(playerId, updatedPlayer)
+  updatePlayer = (playerId, updatePlayer) => {
+    playerData.updatePlayer(playerId, updatePlayer)
       .then(() => {
         this.getPlayers();
         this.setState({ editMode: false, showPlayerForm: false });
@@ -70,14 +65,11 @@ class PlayerContainer extends React.Component {
   }
 
   render() {
-    const { setSinglePlayer } = this.props;
-
     return (
-      <div className= "d-flex flex-wrap">
-      <button onClick={this.setShowPlayerForm}>Add New Player</button>
-      { this.state.showPlayerForm && <Roster addPlayer={this.addPlayer} editMode={this.state.editMode} playerToEdit={this.state.playerToEdit} updatePlayer={this.updatePlayer} /> }
-      {this.state.players.map((player) => (<Player key={player.id} player={player} setSinglePlayer={setSinglePlayer} setEditMode={this.setEditMode} setPlayerToEdit={this.setPlayerToEdit} deleteAPlayer={this.deleteAPlayer} />))}
-
+      <div className="container">
+      <div className="d-flex flex-wrap buttonRow"><button className="btn-lg addBtn" onClick={this.setShowPlayerForm}>Add New Player</button></div>
+      { this.state.showPlayerForm && <Roster addPlayer={this.addPlayer} editMode={this.state.editMode} playerToEdit={this.state.playerToEdit} updatePlayer={this.updatePlayer} />}
+      {this.state.players.map((player) => (<Players key={player.id} player={player} deleteAPlayer={this.deleteAPlayer} playerForm={this.playerForm} setEditMode={this.setEditMode} setPlayerToEdit={this.setPlayerToEdit}/>))}
       </div>
     );
   }
