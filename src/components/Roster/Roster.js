@@ -112,7 +112,7 @@ class Roster extends React.Component {
       />
     </div>
     {
-      (editMode) ? (<button className="btn btn-outline-light" onClick={this.updatePlayerEvent}>Save Player</button>) : (<button className="btn btn-warning" onClick={this.savePlayerEvent}>Update Player</button>)
+      (editMode) ? (<button className="btn btn-outline-light" onClick={this.updatePlayerEvent}>Update Player</button>) : (<button className="btn btn-warning" onClick={this.savePlayerEvent}>Save Player</button>)
     }
   </form>
     );
