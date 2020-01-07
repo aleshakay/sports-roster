@@ -6,7 +6,7 @@ import playerShape from '../../helpers/propz/playerShape';
 
 class Players extends React.Component {
   static propTypes = {
-    player: PropTypes.arrayOf(playerShape.playerShape),
+    player: playerShape.playerShape,
     setEditMode: PropTypes.func,
     setPlayerToEdit: PropTypes.func,
     deleteAPlayer: PropTypes.func,
@@ -31,16 +31,14 @@ class Players extends React.Component {
     const { player } = this.props;
     return (
       <div className="flex-container playCont">
-      <div>
-        <div className="playercd d-flex flex-wrap">
-          <div className="card col-4 sportsCard">
+        <div className="playercd d-flex col-8 flex-wrap">
+          <div className="card sportsCard">
             <div className="card-body">
               <h4 className="card-text flex-item">{player.name}</h4>
               <h6 className="card-text flex-item">{player.position}</h6>
               <img src={player.imageUrl} className="card-img-top flex-item" alt="..."/>
               <button className="btn-outline-danger" onClick={this.setEditMode}>Edit</button>
               <button className="btn-outline-danger" onClick={this.deletePlayerEvent}>Delete</button>
-              </div>
               </div>
           </div>
         </div>
